@@ -1,0 +1,229 @@
+<div class="home-container">
+    <div class="content-container">
+      <div class="header">
+        <div class="logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h1>ImageProtector</h1>
+        </div>
+        <p class="tagline">Protect your images from AI training with invisible watermarks</p>
+      </div>
+  
+      <div class="card-container">
+        <!-- Upload section -->
+        <div class="upload-card">
+          <h2>Upload Image</h2>
+          <div 
+            class="upload-area" 
+            [class.dragging]="isDragging" 
+            [class.has-image]="imagePreviewUrl"
+            (dragover)="onDragOver($event)" 
+            (dragleave)="onDragLeave($event)" 
+            (drop)="onDrop($event)"
+          >
+            <div class="upload-content" *ngIf="!imagePreviewUrl">
+              <svg class="upload-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <h3>Drag & Drop your image here</h3>
+              <p>or</p>
+              <label for="fileInput" class="primary-button">
+                <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+                </svg>
+                Browse Files
+              </label>
+              <input 
+                type="file" 
+                id="fileInput" 
+                (change)="onFileSelected($event)" 
+                accept="image/*" 
+                style="display: none;"
+              >
+              <p class="file-info">Supports JPG, PNG, WebP up to 10MB</p>
+            </div>
+            
+            <div class="image-preview" *ngIf="imagePreviewUrl">
+              <img [src]="imagePreviewUrl" alt="Image preview">
+              <div class="image-actions">
+                <button class="primary-button remove-button" (click)="removeImage()">
+                  <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                  </svg>
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <div class="image-info" *ngIf="imageHash">
+            <div class="hash-info">
+              <span class="hash-label">Image Hash:</span>
+              <span class="hash-value">{{imageHash}}</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Protection options -->
+        <div class="options-card" [class.disabled]="!imagePreviewUrl">
+          <h2>Protection Options</h2>
+          
+          <div class="form-group">
+            <label for="watermarkType">Watermark Type</label>
+            <select id="watermarkType" [(ngModel)]="watermarkType" class="select-input">
+              <option value="invisible">Invisible (AI Detection)</option>
+              <option value="steganography">Steganography (Hidden Data)</option>
+              <option value="frequency">Frequency Domain (Robust)</option>
+              <option value="metadata">Metadata Embedding</option>
+            </select>
+            <p class="option-description">
+              <ng-container [ngSwitch]="watermarkType">
+                <ng-container *ngSwitchCase="'invisible'">
+                  Embeds imperceptible patterns that AI can detect but humans can't see
+                </ng-container>
+                <ng-container *ngSwitchCase="'steganography'">
+                  Hides data within pixels using bit manipulation techniques
+                </ng-container>
+                <ng-container *ngSwitchCase="'frequency'">
+                  Embeds watermark in frequency domain to resist edits and cropping
+                </ng-container>
+                <ng-container *ngSwitchCase="'metadata'">
+                  Adds copyright info to file metadata (less secure but non-destructive)
+                </ng-container>
+              </ng-container>
+            </p>
+          </div>
+  
+          <div class="form-group">
+            <label for="watermarkStrength">Protection Strength</label>
+            <div class="slider-container">
+              <input 
+                type="range" 
+                id="watermarkStrength" 
+                min="10" 
+                max="100" 
+                step="10" 
+                [(ngModel)]="watermarkStrength"
+                class="slider-input"
+              >
+              <span class="slider-value">{{watermarkStrength}}%</span>
+            </div>
+            <p class="strength-note">
+              Higher values provide better protection but may slightly affect image quality
+            </p>
+          </div>
+  
+          <div class="form-group">
+            <label for="watermarkText">Identifier Text</label>
+            <input 
+              type="text" 
+              id="watermarkText" 
+              [(ngModel)]="watermarkText" 
+              placeholder="© Your Name or unique identifier"
+              class="text-input"
+            >
+            <p class="text-note">
+              This text will be encoded in the image for ownership verification
+            </p>
+          </div>
+  
+          <div class="form-group">
+            <label for="watermarkPattern">Pattern Type</label>
+            <select id="watermarkPattern" [(ngModel)]="watermarkPattern" class="select-input">
+              <option value="random">Random (Most Secure)</option>
+              <option value="grid">Grid Pattern</option>
+              <option value="corners">Corner Focus</option>
+              <option value="custom">Custom Pattern</option>
+            </select>
+          </div>
+  
+          <button 
+            class="primary-button submit-button" 
+            [disabled]="!imagePreviewUrl || isProcessing" 
+            (click)="watermarkImage()"
+          >
+            <svg *ngIf="!isProcessing" class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <div *ngIf="isProcessing" class="spinner"></div>
+            {{isProcessing ? 'Processing...' : 'Apply Protection'}}
+          </button>
+        </div>
+      </div>
+  
+      <!-- Result section -->
+      <div class="result-card" *ngIf="resultImageUrl">
+        <h2>Protected Image</h2>
+        <div class="result-preview">
+          <img [src]="resultImageUrl" alt="Protected image">
+        </div>
+        <div class="protection-info">
+          <div class="info-item">
+            <span class="info-label">Protection Type:</span>
+            <span class="info-value">{{watermarkType === 'invisible' ? 'AI-Resistant Watermark' : 
+              watermarkType === 'steganography' ? 'Steganographic Data Hiding' : 
+              watermarkType === 'frequency' ? 'Frequency Domain Watermark' : 'Metadata Embedding'}}</span>
+          </div>
+          <div class="info-item" *ngIf="imageHash">
+            <span class="info-label">Verification Hash:</span>
+            <span class="info-value">{{imageHash}}</span>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button class="secondary-button" (click)="downloadImage()">
+            <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+            </svg>
+            Download Protected Image
+          </button>
+          <button class="secondary-button" (click)="verifyWatermark()" *ngIf="selectedFile && resultImageUrl">
+            <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Verify Protection
+          </button>
+          <button class="secondary-button" (click)="startNewImage()">
+            <svg class="button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12h18M12 3v18"></path>
+            </svg>
+            New Image
+          </button>
+        </div>
+      </div>
+  
+      <!-- Information section -->
+      <div class="info-section">
+        <h3>How Image Protection Works</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 16v-4M12 8h.01"></path>
+            </svg>
+            <h4>Invisible to Humans</h4>
+            <p>Our watermarks are imperceptible to the human eye but detectable by AI systems</p>
+          </div>
+          <div class="info-card">
+            <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0110 0v4"></path>
+            </svg>
+            <h4>Protect Your Work</h4>
+            <p>Prevents unauthorized AI systems from training on your creative content</p>
+          </div>
+          <div class="info-card">
+            <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <h4>Robust Protection</h4>
+            <p>Resistant to common image modifications like resizing, cropping, and compression</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
