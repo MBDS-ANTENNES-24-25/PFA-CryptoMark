@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   imageHash: string | null = null;
 
   // API endpoint
-  private apiUrl = 'api/images/watermark'; // Updated endpoint name
+  private apiUrl = 'http://localhost:5000/api/images/watermark'; // Updated endpoint name
 
   constructor(private http: HttpClient) { }
 
@@ -322,7 +322,7 @@ export class HomeComponent implements OnInit {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
 
-    this.http.post<any>('api/images/verify', formData)
+    this.http.post<any>('http://localhost:5000/api/images/verify', formData)
       .pipe(
         catchError(error => {
           console.error('Error verifying watermark:', error);
@@ -333,7 +333,7 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(response => {
         this.isProcessing = false;
-        
+        console.log(response)
         if (response) {
           if (response.hasWatermark) {
             alert(`Watermark detected! Message: ${response.extractedMessage || 'N/A'}`);
