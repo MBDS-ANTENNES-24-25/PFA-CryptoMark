@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -11,16 +14,19 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
   isLoginMode = true;
   showPassword = false;
   loginForm: FormGroup = new FormGroup({});
   registerForm: FormGroup = new FormGroup({});
-  loginError: string | null = null;
+  authError: string | null = null;
+  isLoading = false;
+  authService: AuthService = inject(AuthService);
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+   
   ) { }
 
   ngOnInit(): void {
@@ -49,15 +55,15 @@ export class LoginComponent implements OnInit {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
     if (password && confirmPassword && password.value !== confirmPassword.value) {
-      confirmPassword.setErrors({ notMatched: true });
+      confirmPassword?.setErrors({ notMatched: true });
       return { notMatched: true };
     }
-   
     return null;
   }
 
   switchMode(isLogin: boolean): void {
     this.isLoginMode = isLogin;
+    this.authError = null; // Clear error when switching modes
   }
 
   togglePasswordVisibility(): void {
@@ -65,6 +71,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.authError = null;
     if (this.isLoginMode) {
       if (this.loginForm.valid) {
         this.login();
@@ -81,16 +88,8 @@ export class LoginComponent implements OnInit {
   }
 
   markFormGroupTouched(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(key => {
-      const control = formGroup.get(key);
-      if (control) {
-        control.markAsTouched();
-       
-        if (control instanceof FormGroup) {
-          this.markFormGroupTouched(control);
-        }
-      }
-     
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
       }
@@ -98,47 +97,101 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.loginError = null;
+    if (!this.loginForm.valid) return;
+    this.isLoading = true;
     const { email, password } = this.loginForm.value;
-    console.log('Login attempt:', { email, password });
-    
-    // Check for admin credentials
-    if (email === 'admin@admin.ma' && password === 'admin123') {
-      console.log('Admin login successful');
-      this.router.navigate(['/home']);
-      return;
-    }
-    
-    // Regular user login logic
-    // Here you would typically call an authentication service
-    // For demonstration purposes, we're just redirecting after a delay
-    setTimeout(() => {
-      // You can add actual authentication logic here
-      // If login fails, you could set the loginError message
-      this.router.navigate(['/dashboard']);
-    }, 1000);
+
+    this.authService.login(email, password).subscribe({
+      next: () => {
+        this.isLoading = false;
+        console.log('Login successful!');
+        this.router.navigate(['/home']); // Navigate to a protected route
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.authError = this.getFirebaseErrorMessage(err.code);
+        console.error('Login error:', err);
+      }
+    });
   }
 
   register(): void {
-    const userData = {
-      fullName: this.registerForm.value.fullName,
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password
-    };
-   
-    console.log('Registration data:', userData);
-   
-    setTimeout(() => {
-      this.isLoginMode = true;
-      this.loginForm.patchValue({
-        email: userData.email
-      });
-     
-      console.log('Registration successful! Please login.');
-    }, 1000);
+    if (!this.registerForm.valid) return;
+    this.isLoading = true;
+    const { email, password } = this.registerForm.value;
+
+    this.authService.register(email, password).subscribe({
+      next: () => {
+        this.isLoading = false;
+        console.log('Registration successful!');
+        // Switch to login mode and pre-fill email for user convenience
+        this.isLoginMode = true;
+        this.loginForm.patchValue({ email: email });
+        // You could also show a success message here
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.authError = this.getFirebaseErrorMessage(err.code);
+        console.error('Registration error:', err);
+      }
+    });
   }
 
-  uploadAndProtectImage(image: File): void {
-    console.log('Processing image for cryptographic signature:', image.name);
+  googleLogin(): void {
+    this.isLoading = true;
+    this.authError = null;
+    this.authService.loginWithGoogle().subscribe({
+      next: () => {
+        this.isLoading = false;
+        console.log('Google login successful!');
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.authError = this.getFirebaseErrorMessage(err.code);
+        console.error('Google login error:', err);
+      }
+    });
+  }
+
+  githubLogin(): void {
+    this.isLoading = true;
+    this.authError = null;
+    this.authService.loginWithGitHub().subscribe({
+      next: () => {
+        this.isLoading = false;
+        console.log('GitHub login successful!');
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.authError = this.getFirebaseErrorMessage(err.code);
+        console.error('GitHub login error:', err);
+      }
+    });
+  }
+
+  /**
+   * Converts Firebase error codes into user-friendly messages.
+   * @param errorCode The error code from Firebase.
+   * @returns A user-friendly error string.
+   */
+  private getFirebaseErrorMessage(errorCode: string): string {
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        return 'The email address is not valid.';
+      case 'auth/user-disabled':
+        return 'This user account has been disabled.';
+      case 'auth/user-not-found':
+      case 'auth/wrong-password':
+      case 'auth/invalid-credential':
+        return 'Invalid email or password. Please try again.';
+      case 'auth/email-already-in-use':
+        return 'This email address is already in use by another account.';
+      case 'auth/weak-password':
+        return 'The password is too weak. It must be at least 6 characters long.';
+      default:
+        return 'An unexpected error occurred. Please try again.';
+    }
   }
 }
