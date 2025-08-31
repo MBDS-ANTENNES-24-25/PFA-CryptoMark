@@ -5,6 +5,12 @@ import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+interface UserKey {
+  keyId: string;
+  secretKey: string;
+  createdAt?: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,16 +32,114 @@ export class HomeComponent implements OnInit {
   watermarkText: string = '';
   watermarkPattern: string = 'random';
   
+  // User key management
+  userSecretKey: string = '';
+  savedKeys: UserKey[] = [];
+  showKeyModal: boolean = false;
+  generatedKey: UserKey | null = null;
+  verificationKey: string = '';
+  keyHint: string | null = null;
+  
   // Hash for content verification
   imageHash: string | null = null;
 
-  // API endpoint
-  private apiUrl = 'http://localhost:5000/api/images/watermark'; // Updated endpoint name
+  // API endpoints
+  private apiUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    // Initialization code if needed
+    // Load saved keys from localStorage (in production, use secure storage)
+    this.loadSavedKeys();
+    
+    // Check if user has a default key
+    const defaultKey = localStorage.getItem('defaultUserKey');
+    if (defaultKey) {
+      this.userSecretKey = defaultKey;
+    }
+  }
+
+  /**
+   * Generate a new user secret key
+   */
+  generateNewKey(): void {
+    this.isProcessing = true;
+    
+    this.http.post<any>(`${this.apiUrl}/keys/generate`, {})
+      .pipe(
+        catchError(error => {
+          console.error('Error generating key:', error);
+          alert('Error generating key. Please try again.');
+          this.isProcessing = false;
+          return of(null);
+        })
+      )
+      .subscribe(response => {
+        this.isProcessing = false;
+        
+        if (response && response.success) {
+          this.generatedKey = {
+            keyId: response.keyId,
+            secretKey: response.secretKey,
+            createdAt: new Date().toISOString()
+          };
+          
+          // Show the key to user
+          this.showKeyModal = true;
+          
+          // Optionally set as current key
+          this.userSecretKey = response.secretKey;
+          
+          // Save to local storage (in production, use secure storage)
+          this.saveKey(this.generatedKey);
+        }
+      });
+  }
+
+  /**
+   * Save a key to local storage
+   */
+  saveKey(key: UserKey): void {
+    const keys = this.getSavedKeys();
+    keys.push(key);
+    localStorage.setItem('userKeys', JSON.stringify(keys));
+    this.loadSavedKeys();
+  }
+
+  /**
+   * Load saved keys from storage
+   */
+  loadSavedKeys(): void {
+    this.savedKeys = this.getSavedKeys();
+  }
+
+  /**
+   * Get saved keys from storage
+   */
+  getSavedKeys(): UserKey[] {
+    const keysJson = localStorage.getItem('userKeys');
+    return keysJson ? JSON.parse(keysJson) : [];
+  }
+
+  /**
+   * Select a saved key to use
+   */
+  selectKey(key: UserKey): void {
+    this.userSecretKey = key.secretKey;
+    localStorage.setItem('defaultUserKey', key.secretKey);
+    this.showKeyModal = false;
+  }
+
+  /**
+   * Copy key to clipboard
+   */
+  copyKeyToClipboard(key: string): void {
+    navigator.clipboard.writeText(key).then(() => {
+      alert('Key copied to clipboard!');
+    }).catch(err => {
+      console.error('Could not copy key:', err);
+      alert('Please manually copy the key');
+    });
   }
 
   /**
@@ -90,13 +194,11 @@ export class HomeComponent implements OnInit {
    */
   private processSelectedFile(file: File): void {
     if (this.isValidImageFile(file)) {
-      if (file.size <= 10 * 1024 * 1024) { // 10MB limit (increased from 5MB)
+      if (file.size <= 10 * 1024 * 1024) { // 10MB limit
         this.selectedFile = file;
         const reader = new FileReader();
         reader.onload = () => {
           this.imagePreviewUrl = reader.result as string;
-          
-          // Generate a basic hash of the image for verification
           this.generateImageHash(reader.result as string);
         };
         reader.readAsDataURL(file);
@@ -112,13 +214,11 @@ export class HomeComponent implements OnInit {
    * Generate a hash of the image data for verification
    */
   private generateImageHash(imageData: string): void {
-    // Simple hash function for demonstration
-    // In production, use a proper crypto library
     let hash = 0;
     for (let i = 0; i < imageData.length; i++) {
       const char = imageData.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32bit integer
+      hash = hash & hash;
     }
     this.imageHash = Math.abs(hash).toString(16).substring(0, 8);
   }
@@ -138,6 +238,8 @@ export class HomeComponent implements OnInit {
     this.selectedFile = null;
     this.imagePreviewUrl = null;
     this.imageHash = null;
+    this.resultImageUrl = null;
+    this.keyHint = null;
   }
 
   /**
@@ -146,15 +248,34 @@ export class HomeComponent implements OnInit {
   watermarkImage(): void {
     if (!this.selectedFile) return;
 
+    // Check if user has a key
+    if (!this.userSecretKey) {
+      const useTemporary = confirm(
+        'No secret key set. Would you like to:\n\n' +
+        'OK - Generate a new permanent key (recommended)\n' +
+        'Cancel - Use a temporary key (less secure)'
+      );
+      
+      if (useTemporary) {
+        this.generateNewKey();
+        return;
+      }
+      // Continue with temporary key (backend will generate one)
+    }
+
     this.isProcessing = true;
     const formData = new FormData();
     formData.append('image', this.selectedFile);
     formData.append('type', this.watermarkType);
     formData.append('strength', this.watermarkStrength.toString());
-    formData.append('text', this.watermarkText);
+    formData.append('text', this.watermarkText || '© Protected Image');
     formData.append('pattern', this.watermarkPattern);
+    
+    if (this.userSecretKey) {
+      formData.append('userKey', this.userSecretKey);
+    }
 
-    this.http.post<any>(this.apiUrl, formData)
+    this.http.post<any>(`${this.apiUrl}/images/watermark`, formData)
       .pipe(
         catchError(error => {
           console.error('Error applying watermark:', error);
@@ -166,163 +287,63 @@ export class HomeComponent implements OnInit {
       .subscribe(response => {
         this.isProcessing = false;
         
-        if (response) {
-          // Handle the response from the backend
-          if (response.watermarkedImageUrl) {
-            this.resultImageUrl = response.watermarkedImageUrl;
-          } else if (response.base64Image) {
-            // If the backend returns a base64 image
+        if (response && response.success) {
+          // Handle the response
+          if (response.base64Image) {
             this.resultImageUrl = 'data:image/jpeg;base64,' + response.base64Image;
           }
           
-          // If the backend returns a verification code or hash
           if (response.verificationHash) {
             this.imageHash = response.verificationHash;
+          }
+          
+          if (response.keyHint) {
+            this.keyHint = response.keyHint;
+          }
+          
+          // If a temporary key was generated, save it
+          if (response.temporaryKey) {
+            this.userSecretKey = response.temporaryKey;
+            const tempKey: UserKey = {
+              keyId: 'temp_' + Date.now(),
+              secretKey: response.temporaryKey,
+              createdAt: new Date().toISOString()
+            };
+            this.saveKey(tempKey);
+            alert(response.warning);
           }
         }
       });
   }
 
   /**
-   * Apply client-side watermark (for demonstration purposes)
-   * This is a simplified example and would not be as robust as server-side processing
-   */
-  applyClientSideWatermark(): void {
-    if (!this.selectedFile || !this.imagePreviewUrl) return;
-    
-    // Create an image element to work with
-    const img = new Image();
-    img.src = this.imagePreviewUrl;
-    
-    img.onload = () => {
-      // Create a canvas to manipulate the image
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      
-      canvas.width = img.width;
-      canvas.height = img.height;
-      
-      // Draw the original image
-      ctx.drawImage(img, 0, 0);
-      
-      // Get image data to manipulate pixels
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const pixels = imageData.data;
-      
-      // Apply LSB (Least Significant Bit) watermarking
-      // This is a very basic implementation - real world would be more sophisticated
-      const message = this.watermarkText || "Protected Image";
-      const messageBytes = this.textToBytes(message);
-      
-      // Encode message length first (4 bytes)
-      const messageLength = messageBytes.length;
-      this.encodeInteger(pixels, 0, messageLength);
-      
-      // Encode the message bytes
-      for (let i = 0; i < messageBytes.length; i++) {
-        this.encodeByte(pixels, (i + 4) * 8, messageBytes[i]);
-      }
-      
-      // Put the modified image data back
-      ctx.putImageData(imageData, 0, 0);
-      
-      // Convert to base64 and display
-      this.resultImageUrl = canvas.toDataURL('image/png');
-      this.isProcessing = false;
-    };
-    
-    img.onerror = () => {
-      alert('Error processing image');
-      this.isProcessing = false;
-    };
-  }
-  
-  /**
-   * Utility function to convert text to byte array
-   */
-  private textToBytes(text: string): Uint8Array {
-    const encoder = new TextEncoder();
-    return encoder.encode(text);
-  }
-  
-  /**
-   * Encode an integer in the first 32 pixels (4 bytes)
-   */
-  private encodeInteger(pixels: Uint8ClampedArray, startPixel: number, value: number): void {
-    for (let i = 0; i < 32; i++) {
-      // Get the bit to encode
-      const bit = (value >> i) & 1;
-      
-      // Calculate pixel position (each pixel has 4 values: R,G,B,A)
-      const pixelPos = (startPixel + i) * 4;
-      
-      // Modify the LSB of the red channel
-      if (pixelPos < pixels.length) {
-        // Clear the LSB and set it to our bit
-        pixels[pixelPos] = (pixels[pixelPos] & 0xFE) | bit;
-      }
-    }
-  }
-  
-  /**
-   * Encode a byte in 8 pixels
-   */
-  private encodeByte(pixels: Uint8ClampedArray, startPixel: number, value: number): void {
-    for (let i = 0; i < 8; i++) {
-      // Get the bit to encode
-      const bit = (value >> i) & 1;
-      
-      // Calculate pixel position
-      const pixelPos = (startPixel + i) * 4;
-      
-      // Modify the LSB of the red channel
-      if (pixelPos < pixels.length) {
-        pixels[pixelPos] = (pixels[pixelPos] & 0xFE) | bit;
-      }
-    }
-  }
-
-  /**
-   * Download the watermarked image
-   */
-  downloadImage(): void {
-    if (!this.resultImageUrl) return;
-
-    // Create a temporary link element
-    const link = document.createElement('a');
-    
-    // If the image is a base64 string
-    if (this.resultImageUrl.startsWith('data:')) {
-      link.href = this.resultImageUrl;
-    } else {
-      // If the image is a URL
-      link.href = this.resultImageUrl;
-    }
-    
-    // Generate a filename with timestamp and hash
-    const hashPart = this.imageHash ? `_${this.imageHash}` : '';
-    const filename = `protected_image${hashPart}_${new Date().getTime()}.png`;
-    link.download = filename;
-    
-    // Append to the document, click and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  /**
    * Verify if an image contains our watermark
-   * This would typically be a separate utility, included here for completeness
    */
   verifyWatermark(): void {
-    if (!this.selectedFile) return;
+    if (!this.selectedFile) {
+      alert('Please select an image to verify');
+      return;
+    }
+
+    // Ask for verification key if not already set
+    if (!this.verificationKey && !this.userSecretKey) {
+      this.verificationKey = prompt('Enter your secret key to verify the watermark:') || '';
+      if (!this.verificationKey) {
+        alert('Verification key is required');
+        return;
+      }
+    }
+
+    const keyToUse = this.verificationKey || this.userSecretKey;
 
     this.isProcessing = true;
     const formData = new FormData();
     formData.append('image', this.selectedFile);
+    formData.append('userKey', keyToUse);
+    formData.append('method', this.watermarkType);
+    formData.append('strength', this.watermarkStrength.toString());
 
-    this.http.post<any>('http://localhost:5000/api/images/verify', formData)
+    this.http.post<any>(`${this.apiUrl}/images/verify`, formData)
       .pipe(
         catchError(error => {
           console.error('Error verifying watermark:', error);
@@ -333,15 +354,52 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(response => {
         this.isProcessing = false;
-        console.log(response)
+        console.log('Verification response:', response);
+        
         if (response) {
-          if (response.hasWatermark) {
-            alert(`Watermark detected! Message: ${response.extractedMessage || 'N/A'}`);
+          if (response.hasWatermark && response.isValidKey) {
+            alert(
+              `✅ Watermark verified successfully!\n\n` +
+              `Message: ${response.extractedMessage || 'N/A'}\n` +
+              `Method: ${response.method || 'Unknown'}\n` +
+              `Timestamp: ${response.timestamp || 'Unknown'}`
+            );
+          } else if (response.hasWatermark && !response.isValidKey) {
+            alert(
+              `⚠️ Watermark detected but key doesn't match!\n\n` +
+              `This image appears to be protected by someone else.`
+            );
           } else {
-            alert('No watermark detected in this image.');
+            alert(
+              `❌ No watermark found with your key.\n\n` +
+              `Possible reasons:\n` +
+              `• The image doesn't have a watermark\n` +
+              `• The watermark was created with a different key\n` +
+              `• The image was modified after watermarking`
+            );
           }
         }
       });
+  }
+
+  /**
+   * Download the watermarked image
+   */
+  downloadImage(): void {
+    if (!this.resultImageUrl) return;
+
+    const link = document.createElement('a');
+    link.href = this.resultImageUrl;
+    
+    // Generate filename with key hint
+    const keyPart = this.keyHint ? `_${this.keyHint}` : '';
+    const hashPart = this.imageHash ? `_${this.imageHash.substring(0, 8)}` : '';
+    const filename = `protected_image${keyPart}${hashPart}_${new Date().getTime()}.png`;
+    link.download = filename;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   /**
@@ -356,5 +414,25 @@ export class HomeComponent implements OnInit {
     this.watermarkText = '';
     this.watermarkPattern = 'random';
     this.imageHash = null;
+    this.keyHint = null;
+    this.verificationKey = '';
+  }
+
+  /**
+   * Show key management modal
+   */
+  showKeyManager(): void {
+    this.showKeyModal = true;
+  }
+
+  /**
+   * Delete a saved key
+   */
+  deleteKey(keyId: string): void {
+    if (confirm('Are you sure you want to delete this key? This action cannot be undone.')) {
+      const keys = this.getSavedKeys().filter(k => k.keyId !== keyId);
+      localStorage.setItem('userKeys', JSON.stringify(keys));
+      this.loadSavedKeys();
+    }
   }
 }

@@ -1,0 +1,236 @@
+2025-08-31 12:55:49,904 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.2:5000
+2025-08-31 12:55:49,904 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-31 12:55:49,920 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 12:55:50,326 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 12:55:50,329 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 12:56:51,458 - core.watermark_methods - INFO - Modified 1082 pixels for watermark
+2025-08-31 12:56:51,507 - api.routes - INFO - Applied invisible watermark with strength 50
+2025-08-31 12:56:51,507 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 12:56:51] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 12:57:00,633 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 12:57:00,633 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 12:57:00] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 12:57:25,334 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 12:57:25,334 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 12:57:25] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 12:57:52,253 - core.watermark_methods - INFO - Modified 1053 pixels for watermark
+2025-08-31 12:57:52,379 - api.routes - INFO - Applied invisible watermark with strength 50
+2025-08-31 12:57:52,379 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 12:57:52] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 12:57:56,492 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 12:57:56,492 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 12:57:56] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:00:06,084 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-08-31 13:00:06,134 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:00:06,529 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:00:06,540 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:00:16,119 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:00:16,119 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:00:16] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:03:10,752 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-08-31 13:03:10,799 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:03:11,164 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:03:11,167 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:03:15,381 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:03:15,382 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:03:15] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:13:09,250 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 13:13:09,310 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:13:09,706 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:13:09,709 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:13:28,171 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:13:28,187 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:13:28] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:14:22,313 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 13:14:22,368 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:14:22,742 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:14:22,745 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:14:27,993 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:14:27,993 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:14:27] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:19:57,273 - core.watermark_methods - INFO - Modified 1086 pixels for watermark
+2025-08-31 13:19:57,279 - api.routes - INFO - Applied invisible watermark with strength 50
+2025-08-31 13:19:57,279 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:19:57] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 13:20:01,085 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:20:01,085 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:20:01] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:20:20,294 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.2:5000
+2025-08-31 13:20:20,294 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-31 13:20:20,294 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:20:20,683 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:20:20,683 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:20:52,355 - core.watermark_methods - INFO - Modified 1053 pixels for watermark
+2025-08-31 13:20:52,369 - api.routes - INFO - Applied invisible watermark with strength 50
+2025-08-31 13:20:52,371 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:20:52] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 13:20:55,341 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:20:55,343 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:20:55] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:28:06,127 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 13:28:06,171 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 13:28:06,681 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 13:28:06,681 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 13:28:27,797 - core.watermark_methods - INFO - Modified 1129 pixels for watermark
+2025-08-31 13:28:27,812 - api.routes - INFO - Applied invisible watermark with strength 50
+2025-08-31 13:28:27,812 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:28:27] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 13:29:58,068 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:29:58,069 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:29:58] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 13:30:36,410 - api.routes - INFO - Verification complete. Watermark found: True
+2025-08-31 13:30:36,411 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 13:30:36] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 14:14:58,082 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 14:14:58,137 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 14:14:58,515 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 14:14:58,529 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 14:15:13,809 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_methods.py', reloading
+2025-08-31 14:15:13,851 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 14:15:14,214 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 14:15:14,222 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 14:15:27,531 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-08-31 14:15:27,581 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 14:15:27,940 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 14:15:27,948 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 14:16:39,231 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:16:39] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 14:16:39,231 - api.routes - INFO - Generated new user key with ID: BUscvnEGYyxSWVFTH17dqw
+2025-08-31 14:16:39,231 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:16:39] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 14:17:06,759 - core.watermark_methods - INFO - Modified 2528 pixels for watermark with seed 2777735701
+2025-08-31 14:17:06,779 - api.routes - INFO - Applied invisible watermark with user key (hint: d83f3d7f)
+2025-08-31 14:17:06,783 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:17:06] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 14:17:28,869 - core.watermark_processor - INFO - Extracting with seed: 2777735701
+2025-08-31 14:17:28,869 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:17:28,869 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:17:28,870 - core.watermark_processor - INFO - Checked 51 pixels to get 32 length bits
+2025-08-31 14:17:28,870 - core.watermark_processor - INFO - Parsed message length: 4294967295
+2025-08-31 14:17:28,884 - core.watermark_processor - INFO - Extracting with seed: 2777735701
+2025-08-31 14:17:28,884 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:17:28,885 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:17:28,885 - core.watermark_processor - INFO - Checked 51 pixels to get 32 length bits
+2025-08-31 14:17:28,885 - core.watermark_processor - INFO - Parsed message length: 4294967295
+2025-08-31 14:17:28,891 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:17:28] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 14:36:05,610 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 14:36:05,661 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 14:36:06,029 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 14:36:06,037 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 14:36:10,136 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 14:36:10,177 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 14:36:10,538 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 14:36:10,541 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 14:52:19,379 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:52:19] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 14:52:19,391 - api.routes - INFO - Generated new user key with ID: zknBdnzN7YQVJQ8zYlkQEQ
+2025-08-31 14:52:19,391 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:52:19] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 14:52:35,816 - core.watermark_methods - INFO - Modified 2528 pixels for watermark with seed 3650553271
+2025-08-31 14:52:35,826 - api.routes - INFO - Applied invisible watermark with user key (hint: d00735fe)
+2025-08-31 14:52:35,826 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:52:35] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 14:53:54,697 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:53:54,697 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:53:54,697 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:53:54,911 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:53:54,911 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:53:54,926 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:53:54,926 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:53:54,927 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:53:55,120 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:53:55,126 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:53:55,138 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:53:55] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 14:54:14,266 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:54:14,266 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:54:14,266 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:54:14,459 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:54:14,459 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:54:14,469 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:54:14,469 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:54:14,469 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:54:14,661 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:54:14,661 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:54:14,678 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:54:14] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 14:55:09,528 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:55:09,528 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:55:09,528 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:55:09,779 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:55:09,779 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:55:09,794 - core.watermark_processor - INFO - Extracting with seed: 1632951686
+2025-08-31 14:55:09,794 - core.watermark_processor - INFO - Image dimensions: 720x1152
+2025-08-31 14:55:09,794 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:55:10,061 - core.watermark_processor - INFO - Selected 414437 pixels for extraction
+2025-08-31 14:55:10,061 - core.watermark_processor - INFO - Parsed message length: 1510940670
+2025-08-31 14:55:10,077 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:55:10] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 14:55:28,086 - core.watermark_processor - INFO - Extracting with seed: 2344721486
+2025-08-31 14:55:28,086 - core.watermark_processor - INFO - Image dimensions: 951x976
+2025-08-31 14:55:28,086 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:55:28,370 - core.watermark_processor - INFO - Selected 463933 pixels for extraction
+2025-08-31 14:55:28,370 - core.watermark_processor - INFO - Parsed message length: 4294967295
+2025-08-31 14:55:28,386 - core.watermark_processor - INFO - Extracting with seed: 2344721486
+2025-08-31 14:55:28,386 - core.watermark_processor - INFO - Image dimensions: 951x976
+2025-08-31 14:55:28,386 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 14:55:28,684 - core.watermark_processor - INFO - Selected 463933 pixels for extraction
+2025-08-31 14:55:28,700 - core.watermark_processor - INFO - Parsed message length: 4294967295
+2025-08-31 14:55:28,715 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 14:55:28] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 22:09:16,730 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.166:5000
+2025-08-31 22:09:16,731 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-31 22:09:16,732 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 22:09:17,214 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 22:09:17,216 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 22:22:02,781 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:22:02] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 22:22:02,790 - api.routes - INFO - Generated new user key with ID: O0C4Ac15AA_ox08h3B8C2Q
+2025-08-31 22:22:02,790 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:22:02] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 22:22:08,020 - core.watermark_methods - INFO - Embedded 4736 bits with redundancy 2 using seed 2086266753
+2025-08-31 22:22:08,020 - api.routes - INFO - Applied steganography watermark with user key (hint: e09673dd)
+2025-08-31 22:22:08,020 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:22:08] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 22:23:08,732 - core.watermark_processor - INFO - Extracting with seed: 2600757908
+2025-08-31 22:23:08,732 - core.watermark_processor - INFO - Image dimensions: 200x200
+2025-08-31 22:23:08,732 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 22:23:08,753 - core.watermark_processor - INFO - Selected 19964 pixels for extraction
+2025-08-31 22:23:08,753 - core.watermark_processor - INFO - Parsed message length: 3757662075
+2025-08-31 22:23:08,754 - core.watermark_processor - INFO - Extracting with seed: 2600757908
+2025-08-31 22:23:08,754 - core.watermark_processor - INFO - Image dimensions: 200x200
+2025-08-31 22:23:08,754 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 22:23:08,767 - core.watermark_processor - INFO - Selected 19964 pixels for extraction
+2025-08-31 22:23:08,767 - core.watermark_processor - INFO - Parsed message length: 3757662075
+2025-08-31 22:23:08,768 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:23:08] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 22:39:09,991 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 22:39:10,051 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 22:39:10,501 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 22:39:10,503 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 22:43:05,212 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:43:05] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 22:43:05,212 - api.routes - INFO - Generated new user key with ID: wBqq2_33drq77vKlJ94ePg
+2025-08-31 22:43:05,212 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:43:05] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 22:43:13,321 - core.watermark_methods - INFO - Embedded 4736 bits with redundancy 2 using seed 3554979254
+2025-08-31 22:43:13,321 - api.routes - INFO - Applied steganography watermark with user key (hint: fcde9bfd)
+2025-08-31 22:43:13,321 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:43:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 22:43:38,401 - core.watermark_processor - INFO - Extracting steganography with seed: 3351809800, redundancy: 2
+2025-08-31 22:43:38,401 - core.watermark_processor - INFO - Parsed message length: 3645696378 (with redundancy 2)
+2025-08-31 22:43:38,401 - core.watermark_processor - INFO - Extracting LSB with seed: 3351809800
+2025-08-31 22:43:38,401 - core.watermark_processor - INFO - Image dimensions: 200x200
+2025-08-31 22:43:38,401 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 22:43:38,413 - core.watermark_processor - INFO - Selected 20018 pixels for extraction
+2025-08-31 22:43:38,419 - core.watermark_processor - INFO - Parsed message length: 1726962034
+2025-08-31 22:43:38,419 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 22:43:38] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 22:59:33,119 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\core\\watermark_processor.py', reloading
+2025-08-31 22:59:33,166 - werkzeug - INFO -  * Restarting with stat
+2025-08-31 22:59:33,694 - werkzeug - WARNING -  * Debugger is active!
+2025-08-31 22:59:33,696 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-08-31 23:00:15,826 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:00:15] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 23:00:15,834 - api.routes - INFO - Generated new user key with ID: -qy7J4TCdrIbtphA4wuE8A
+2025-08-31 23:00:15,834 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:00:15] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 23:00:18,984 - core.watermark_methods - INFO - Embedded 4736 bits with redundancy 2 using seed 3068623185
+2025-08-31 23:00:18,994 - api.routes - INFO - Applied steganography watermark with user key (hint: b6e77951)
+2025-08-31 23:00:18,994 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:00:18] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 23:00:36,684 - core.watermark_processor - INFO - Extracting steganography with seed: 3068623185, redundancy: 2
+2025-08-31 23:00:36,684 - core.watermark_processor - INFO - Parsed message length: 2336 (with redundancy 2)
+2025-08-31 23:00:36,695 - core.watermark_processor - INFO - Successfully extracted steganography watermark
+2025-08-31 23:00:36,695 - api.routes - INFO - Successfully verified watermark with user key
+2025-08-31 23:00:36,695 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:00:36] "POST /api/images/verify HTTP/1.1" 200 -
+2025-08-31 23:11:54,073 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:11:54] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 23:11:54,073 - api.routes - INFO - Generated new user key with ID: Uftsi-qhdja135p6jmzjpw
+2025-08-31 23:11:54,073 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:11:54] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-08-31 23:11:58,013 - core.watermark_processor - ERROR - Error applying watermark: index 2 is out of bounds for axis 2 with size 2
+2025-08-31 23:11:58,013 - api.routes - ERROR - Error in apply_watermark: index 2 is out of bounds for axis 2 with size 2
+2025-08-31 23:11:58,013 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:11:58] "[35m[1mPOST /api/images/watermark HTTP/1.1[0m" 500 -
+2025-08-31 23:12:21,313 - core.watermark_methods - INFO - Modified 2528 pixels for watermark with seed 64897719
+2025-08-31 23:12:21,313 - api.routes - INFO - Applied invisible watermark with user key (hint: 03de42b7)
+2025-08-31 23:12:21,313 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:12:21] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-08-31 23:12:51,383 - core.watermark_processor - INFO - Extracting LSB with seed: 64897719
+2025-08-31 23:12:51,383 - core.watermark_processor - INFO - Image dimensions: 136x400
+2025-08-31 23:12:51,383 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-08-31 23:12:51,397 - core.watermark_processor - INFO - Selected 27337 pixels for extraction
+2025-08-31 23:12:51,397 - core.watermark_processor - INFO - Parsed message length: 2496
+2025-08-31 23:12:51,400 - core.watermark_processor - INFO - Extracted 2528 bits total
+2025-08-31 23:12:51,400 - core.watermark_processor - INFO - Successfully extracted watermark
+2025-08-31 23:12:51,401 - api.routes - INFO - Successfully verified watermark with user key
+2025-08-31 23:12:51,401 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:12:51] "POST /api/images/verify HTTP/1.1" 200 -

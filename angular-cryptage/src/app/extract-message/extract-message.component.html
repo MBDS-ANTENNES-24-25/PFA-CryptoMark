@@ -1,0 +1,301 @@
+<div class="extraction-container">
+  <div class="content-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-content">
+        <svg class="header-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 11H7a5 5 0 110-10h2M15 5h2a5 5 0 110 10h-2M8 11h8"></path>
+          <circle cx="12" cy="16" r="3"></circle>
+          <path d="M12 19v2"></path>
+        </svg>
+        <h1>Watermark Extractor</h1>
+      </div>
+      <p class="tagline">Verify and extract hidden watermarks from protected images</p>
+    </div>
+
+    <!-- Main content grid -->
+    <div class="main-grid">
+      <!-- Upload Section -->
+      <div class="upload-section card">
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          Select Image
+        </h2>
+        
+        <div 
+          class="upload-area"
+          [class.dragging]="isDragging"
+          [class.has-image]="imagePreviewUrl"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+        >
+          <div class="upload-placeholder" *ngIf="!imagePreviewUrl">
+            <svg class="upload-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+            </svg>
+            <p class="upload-text">Drag & Drop your watermarked image here</p>
+            <p class="upload-or">or</p>
+            <label for="fileInput" class="browse-button">
+              Browse Files
+            </label>
+            <input 
+              type="file" 
+              id="fileInput" 
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display: none;"
+            >
+            <p class="file-info">Supports JPG, PNG, WebP up to 10MB</p>
+          </div>
+          
+          <div class="image-preview-container" *ngIf="imagePreviewUrl">
+            <img [src]="imagePreviewUrl" alt="Selected image" class="preview-image">
+            <button class="remove-image-btn" (click)="removeImage()">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extraction Settings -->
+      <div class="settings-section card">
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"></path>
+          </svg>
+          Extraction Settings
+        </h2>
+        
+        <!-- Key Selection -->
+        <div class="form-group">
+          <label for="keySelect">Secret Key</label>
+          <select 
+            id="keySelect" 
+            [(ngModel)]="selectedKeyId"
+            (change)="onKeySelect()"
+            class="form-select"
+          >
+            <option value="">-- Select a saved key --</option>
+            <option *ngFor="let key of savedKeys" [value]="key.keyId">
+              {{key.keyId}} (Created: {{key.createdAt ? (key.createdAt | date:'short') : 'Unknown'}})
+            </option>
+            <option value="manual">Enter key manually</option>
+          </select>
+        </div>
+        
+        <!-- Manual Key Input -->
+        <div class="form-group" *ngIf="showKeyInput || !savedKeys.length">
+          <label for="secretKey">Enter Secret Key</label>
+          <input 
+            type="password"
+            id="secretKey"
+            [(ngModel)]="userSecretKey"
+            placeholder="Enter your secret key"
+            class="form-input"
+          >
+          <p class="help-text">Enter the secret key used when creating the watermark</p>
+        </div>
+        
+        <!-- Extraction Method -->
+        <div class="form-group">
+          <label for="method">Extraction Method</label>
+          <select 
+            id="method"
+            [(ngModel)]="extractionMethod"
+            class="form-select"
+          >
+            <option value="auto">Auto-Detect (Recommended)</option>
+            <option value="invisible">Invisible Watermark</option>
+            <option value="steganography">Steganography</option>
+            <option value="frequency">Frequency Domain</option>
+            <option value="metadata">Metadata</option>
+          </select>
+          <p class="help-text">Auto-detect will try all methods to find the watermark</p>
+        </div>
+        
+        <!-- Strength Setting -->
+        <div class="form-group">
+          <label for="strength">Protection Strength</label>
+          <div class="slider-container">
+            <input 
+              type="range"
+              id="strength"
+              min="10"
+              max="100"
+              step="10"
+              [(ngModel)]="strength"
+              class="strength-slider"
+            >
+            <span class="strength-value">{{strength}}%</span>
+          </div>
+          <p class="help-text">Should match the strength used during watermarking</p>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button 
+            class="extract-button primary"
+            [disabled]="!imagePreviewUrl || !userSecretKey || isProcessing"
+            (click)="extractWatermark()"
+          >
+            <div class="spinner" *ngIf="isProcessing"></div>
+            <svg *ngIf="!isProcessing" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+            {{isProcessing ? 'Extracting...' : 'Extract Watermark'}}
+          </button>
+          
+          <button 
+            class="extract-button secondary"
+            [disabled]="!imagePreviewUrl || !userSecretKey || isProcessing"
+            (click)="tryAllMethods()"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"></path>
+            </svg>
+            Try All Methods
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="result-section card" *ngIf="showResult && extractionResult">
+      <div class="result-header" [class.success]="extractionSuccess" [class.failure]="!extractionSuccess">
+        <svg *ngIf="extractionSuccess" class="result-icon success" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <svg *ngIf="!extractionSuccess" class="result-icon failure" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+        <h2>{{extractionSuccess ? 'Watermark Found!' : 'No Watermark Found'}}</h2>
+      </div>
+      
+      <!-- Success Result -->
+      <div class="result-content" *ngIf="extractionSuccess">
+        <div class="result-item">
+          <span class="result-label">Status:</span>
+          <span class="result-value success-text">✓ Valid watermark detected and verified</span>
+        </div>
+        
+        <div class="result-item" *ngIf="extractionResult.extractedMessage">
+          <span class="result-label">Embedded Message:</span>
+          <div class="message-container">
+            <span class="result-value message-text">{{extractionResult.extractedMessage}}</span>
+            <button 
+              class="copy-button"
+              (click)="copyToClipboard(extractionResult.extractedMessage!)"
+              title="Copy to clipboard"
+            >
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+              </svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        
+        <div class="result-item" *ngIf="extractionResult.timestamp">
+          <span class="result-label">Watermark Created:</span>
+          <span class="result-value">{{formatTimestamp(extractionResult.timestamp)}}</span>
+        </div>
+        
+        <div class="result-item" *ngIf="extractionResult.method">
+          <span class="result-label">Protection Method:</span>
+          <span class="result-value">{{getMethodDisplayName(extractionResult.method)}}</span>
+        </div>
+        
+        <div class="result-item" *ngIf="extractionResult.details">
+          <span class="result-label">Additional Details:</span>
+          <div class="details-container">
+            <div *ngFor="let item of extractionResult.details | keyvalue" class="detail-item">
+              <span class="detail-key">{{item.key}}:</span>
+              <span class="detail-value">{{item.value}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Failure Result -->
+      <div class="result-content" *ngIf="!extractionSuccess">
+        <div class="result-item">
+          <span class="result-label">Status:</span>
+          <span class="result-value failure-text">✗ {{extractionResult.message}}</span>
+        </div>
+        
+        <div class="possible-reasons" *ngIf="extractionResult.possibleReasons">
+          <p class="reasons-title">Possible reasons:</p>
+          <ul class="reasons-list">
+            <li *ngFor="let reason of extractionResult.possibleReasons">{{reason}}</li>
+          </ul>
+        </div>
+        
+        <div class="help-section">
+          <p class="help-title">Tips:</p>
+          <ul class="help-list">
+            <li>Make sure you're using the exact same secret key used during watermarking</li>
+            <li>Try using "Auto-Detect" mode to check all watermark methods</li>
+            <li>Ensure the protection strength matches the original setting</li>
+            <li>The image may have been modified or compressed after watermarking</li>
+          </ul>
+        </div>
+      </div>
+      
+      <button class="new-extraction-button" (click)="startNewExtraction()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Extract Another Image
+      </button>
+    </div>
+    
+    <!-- Info Section -->
+    <div class="info-section">
+      <h3>How Watermark Extraction Works</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+          </svg>
+          <h4>Secure Verification</h4>
+          <p>Only the original secret key can extract and verify the watermark</p>
+        </div>
+        <div class="info-card">
+          <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <h4>Timestamp Proof</h4>
+          <p>Extracted watermarks include the original creation timestamp</p>
+        </div>
+        <div class="info-card">
+          <svg class="info-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <h4>Message Recovery</h4>
+          <p>Retrieve your embedded copyright text and ownership information</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
