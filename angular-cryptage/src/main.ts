@@ -4,20 +4,21 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { importProvidersFrom, NgZone } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment';
- import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideHttpClient(),
     importProvidersFrom(
-      BrowserModule,            // ✅ Fournit _NgZone
-      BrowserAnimationsModule   // ✅ Évite l’erreur @angular/animations
+      BrowserModule,            
+      BrowserAnimationsModule  
     )
   ]
 });

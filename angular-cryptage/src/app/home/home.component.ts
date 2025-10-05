@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 interface UserKey {
   keyId: string;
@@ -16,7 +17,7 @@ interface UserKey {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule]
+  imports: [FormsModule, CommonModule, HttpClientModule,SidebarComponent]
 })
 export class HomeComponent implements OnInit {
   // Image handling properties
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   isProcessing: boolean = false;
 
   // Digital watermark options
-  watermarkType: string = 'invisible';
+  watermarkType: string = 'steganography';
   watermarkStrength: number = 50;
   watermarkText: string = '';
   watermarkPattern: string = 'random';

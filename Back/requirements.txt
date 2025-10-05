@@ -7,3 +7,7 @@ scipy==1.11.1
 cryptography==41.0.3
 python-dotenv==1.0.0
 gunicorn==21.2.0
+langchain-google-genai 
+google-generativeai 
+langgraph
+langchain

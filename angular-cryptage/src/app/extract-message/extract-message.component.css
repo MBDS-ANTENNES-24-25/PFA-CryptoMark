@@ -5,6 +5,8 @@
   background-color: #f5f7fa;
   min-height: 100vh;
   padding: 2rem 1rem;
+  margin-left: 260px; 
+  transition: margin-left 0.3s ease;
 }
 
 .content-container {

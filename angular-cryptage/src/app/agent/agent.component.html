@@ -1,0 +1,123 @@
+
+<app-sidebar></app-sidebar>
+<div class="agent-container">
+  <div class="chat-wrapper">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1>Steganography Expert Agent</h1>
+          <p class="status">
+            <span class="status-indicator"></span>
+            {{ sessionId ? 'Active' : 'Connecting...' }}
+          </p>
+        </div>
+      </div>
+      <button class="clear-button" (click)="clearChat()" title="Clear chat">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Error Alert -->
+    <div class="error-alert" *ngIf="error">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 8v4M12 16h.01"></path>
+      </svg>
+      <span>{{ error }}</span>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-messages">
+      <div 
+        *ngFor="let message of messages" 
+        class="message-wrapper"
+        [class.user-message-wrapper]="message.role === 'user'"
+        [class.agent-message-wrapper]="message.role === 'agent'"
+      >
+        <div class="message" [class.user-message]="message.role === 'user'" [class.agent-message]="message.role === 'agent'">
+          <div class="message-avatar" *ngIf="message.role === 'agent'">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="message-content">
+            <div class="message-text">{{ message.content }}</div>
+            <div class="message-time">{{ message.timestamp | date: 'short' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading indicator -->
+      <div class="message-wrapper agent-message-wrapper" *ngIf="isLoading">
+        <div class="message agent-message">
+          <div class="message-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="message-content">
+            <div class="typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested Prompts -->
+    <div class="suggested-prompts" *ngIf="messages.length <= 1 && !isLoading">
+      <p class="prompts-title">Try asking:</p>
+      <div class="prompts-grid">
+        <button 
+          *ngFor="let prompt of suggestedPrompts" 
+          class="prompt-button"
+          (click)="useSuggestedPrompt(prompt)"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          {{ prompt }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="chat-input-wrapper">
+      <div class="chat-input-container">
+        <textarea
+          [(ngModel)]="userInput"
+          (keydown)="handleKeyPress($event)"
+          placeholder="Ask me about steganography, watermarking, or image protection..."
+          class="chat-input"
+          rows="1"
+          [disabled]="isLoading || !sessionId"
+        ></textarea>
+        <button 
+          class="send-button"
+          (click)="sendMessage()"
+          [disabled]="!userInput.trim() || isLoading || !sessionId"
+        >
+          <svg *ngIf="!isLoading" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          <div *ngIf="isLoading" class="spinner"></div>
+        </button>
+      </div>
+      <p class="input-hint">Press Enter to send, Shift+Enter for new line</p>
+    </div>
+  </div>
+</div>

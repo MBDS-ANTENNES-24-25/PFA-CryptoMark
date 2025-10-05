@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 interface ExtractionResult {
   hasWatermark: boolean;
@@ -25,7 +26,7 @@ interface SavedKey {
 @Component({
   selector: 'app-extract-message',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, SidebarComponent],
   templateUrl: './extract-message.component.html',
   styleUrl: './extract-message.component.css'
 })
@@ -38,7 +39,7 @@ export class ExtractMessageComponent implements OnInit {
   
   // Extraction parameters
   userSecretKey: string = '';
-  extractionMethod: string = 'auto';
+  extractionMethod: string = 'steganography';
   strength: number = 50;
   
   // Results

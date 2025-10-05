@@ -1,5 +1,8 @@
+
+  <app-sidebar></app-sidebar> 
+   
 <div class="home-container">
-    <div class="content-container">
+  <div class="content-container">
       <div class="header">
         <div class="logo">
           <svg class="logo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +78,7 @@
           <div class="form-group">
             <label for="watermarkType">Watermark Type</label>
             <select id="watermarkType" [(ngModel)]="watermarkType" class="select-input">
-              <option value="invisible">Invisible (AI Detection)</option>
+              <option value="invisible">Invisible</option>
               <option value="steganography">Steganography (Hidden Data)</option>
               <option value="frequency">Frequency Domain (Robust)</option>
               <option value="metadata">Metadata Embedding</option>
@@ -225,5 +228,7 @@
           </div>
         </div>
       </div>
+    
     </div>
+    
   </div>

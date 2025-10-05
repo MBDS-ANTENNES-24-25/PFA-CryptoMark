@@ -234,3 +234,274 @@
 2025-08-31 23:12:51,400 - core.watermark_processor - INFO - Successfully extracted watermark
 2025-08-31 23:12:51,401 - api.routes - INFO - Successfully verified watermark with user key
 2025-08-31 23:12:51,401 - werkzeug - INFO - 127.0.0.1 - - [31/Aug/2025 23:12:51] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:43:17,928 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.201:5000
+2025-10-04 16:43:17,928 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-04 16:43:17,929 - werkzeug - INFO -  * Restarting with stat
+2025-10-04 16:43:18,369 - werkzeug - WARNING -  * Debugger is active!
+2025-10-04 16:43:18,369 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-04 16:47:15,660 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:47:15] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:47:15,660 - api.routes - INFO - Generated new user key with ID: jEldsBGSYWTdc6Xy7hWrbw
+2025-10-04 16:47:15,660 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:47:15] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:47:25,484 - core.watermark_methods - INFO - Modified 2528 pixels for watermark with seed 746254388
+2025-10-04 16:47:25,505 - api.routes - INFO - Applied invisible watermark with user key (hint: 2c7af034)
+2025-10-04 16:47:25,514 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:47:25] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:47:55,753 - core.watermark_processor - INFO - Extracting LSB with seed: 746254388
+2025-10-04 16:47:55,753 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:47:55,753 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-04 16:47:56,118 - core.watermark_processor - INFO - Selected 1187194 pixels for extraction
+2025-10-04 16:47:56,118 - core.watermark_processor - INFO - Parsed message length: 0
+2025-10-04 16:47:56,144 - core.watermark_processor - INFO - Extracting steganography with seed: 746254388, redundancy: 2
+2025-10-04 16:47:56,144 - core.watermark_processor - INFO - Parsed message length: 0 (with redundancy 2)
+2025-10-04 16:47:56,153 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:47:56] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:49:09,762 - core.watermark_processor - INFO - Extracting LSB with seed: 1806257363
+2025-10-04 16:49:09,762 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:49:09,762 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-10-04 16:49:10,109 - core.watermark_processor - INFO - Selected 847280 pixels for extraction
+2025-10-04 16:49:10,109 - core.watermark_processor - INFO - Parsed message length: 43014
+2025-10-04 16:49:10,132 - core.watermark_processor - INFO - Extracted 43046 bits total
+2025-10-04 16:49:10,153 - core.watermark_processor - INFO - Extracting steganography with seed: 1806257363, redundancy: 2
+2025-10-04 16:49:10,153 - core.watermark_processor - INFO - Parsed message length: 268435456 (with redundancy 2)
+2025-10-04 16:49:10,153 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:49:10] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:49:24,170 - core.watermark_processor - INFO - Extracting LSB with seed: 1806257363
+2025-10-04 16:49:24,170 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:49:24,170 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-10-04 16:49:24,509 - core.watermark_processor - INFO - Selected 847280 pixels for extraction
+2025-10-04 16:49:24,509 - core.watermark_processor - INFO - Parsed message length: 43014
+2025-10-04 16:49:24,525 - core.watermark_processor - INFO - Extracted 43046 bits total
+2025-10-04 16:49:24,552 - core.watermark_processor - INFO - Extracting steganography with seed: 1806257363, redundancy: 2
+2025-10-04 16:49:24,552 - core.watermark_processor - INFO - Parsed message length: 268435456 (with redundancy 2)
+2025-10-04 16:49:24,552 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:49:24] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:49:39,143 - core.watermark_processor - INFO - Extracting LSB with seed: 746254388
+2025-10-04 16:49:39,143 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:49:39,143 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-10-04 16:49:39,492 - core.watermark_processor - INFO - Selected 848202 pixels for extraction
+2025-10-04 16:49:39,492 - core.watermark_processor - INFO - Parsed message length: 3596
+2025-10-04 16:49:39,492 - core.watermark_processor - INFO - Extracted 3628 bits total
+2025-10-04 16:49:39,506 - core.watermark_processor - INFO - Extracting steganography with seed: 746254388, redundancy: 2
+2025-10-04 16:49:39,506 - core.watermark_processor - INFO - Parsed message length: 0 (with redundancy 2)
+2025-10-04 16:49:39,521 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:49:39] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:49:49,261 - core.watermark_processor - INFO - Extracting LSB with seed: 746254388
+2025-10-04 16:49:49,261 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:49:49,261 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-10-04 16:49:49,625 - core.watermark_processor - INFO - Selected 848202 pixels for extraction
+2025-10-04 16:49:49,625 - core.watermark_processor - INFO - Parsed message length: 3596
+2025-10-04 16:49:49,625 - core.watermark_processor - INFO - Extracted 3628 bits total
+2025-10-04 16:49:49,644 - core.watermark_processor - INFO - Extracting steganography with seed: 746254388, redundancy: 2
+2025-10-04 16:49:49,644 - core.watermark_processor - INFO - Parsed message length: 0 (with redundancy 2)
+2025-10-04 16:49:49,644 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:49:49] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:49:53,350 - core.watermark_processor - INFO - Extracting LSB with seed: 746254388
+2025-10-04 16:49:53,350 - core.watermark_processor - INFO - Image dimensions: 911x1861
+2025-10-04 16:49:53,350 - core.watermark_processor - INFO - Using strength factor: 0.5
+2025-10-04 16:49:53,704 - core.watermark_processor - INFO - Selected 848202 pixels for extraction
+2025-10-04 16:49:53,704 - core.watermark_processor - INFO - Parsed message length: 3596
+2025-10-04 16:49:53,704 - core.watermark_processor - INFO - Extracted 3628 bits total
+2025-10-04 16:49:53,721 - core.watermark_processor - INFO - Extracting steganography with seed: 746254388, redundancy: 2
+2025-10-04 16:49:53,722 - core.watermark_processor - INFO - Parsed message length: 0 (with redundancy 2)
+2025-10-04 16:49:53,722 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:49:53] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:50:35,925 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:50:35] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:50:35,925 - api.routes - INFO - Generated new user key with ID: 2MOthxGe1s1wo59Z-LmNNA
+2025-10-04 16:50:35,925 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:50:35] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:50:39,363 - core.watermark_methods - INFO - Embedded 9472 bits with redundancy 4 using seed 4194261596
+2025-10-04 16:50:39,363 - api.routes - INFO - Applied steganography watermark with user key (hint: f9ff5a5c)
+2025-10-04 16:50:39,363 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:50:39] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:51:07,029 - core.watermark_processor - INFO - Extracting steganography with seed: 4194261596, redundancy: 4
+2025-10-04 16:51:07,029 - core.watermark_processor - INFO - Parsed message length: 2336 (with redundancy 4)
+2025-10-04 16:51:07,080 - core.watermark_processor - INFO - Successfully extracted steganography watermark
+2025-10-04 16:51:07,080 - api.routes - INFO - Successfully verified watermark with user key
+2025-10-04 16:51:07,090 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:51:07] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:51:14,822 - core.watermark_processor - INFO - Extracting steganography with seed: 4242447357, redundancy: 4
+2025-10-04 16:51:14,822 - core.watermark_processor - INFO - Parsed message length: 256 (with redundancy 4)
+2025-10-04 16:51:14,822 - services.encryption_service - ERROR - Decryption failed: 
+2025-10-04 16:51:14,822 - core.watermark_processor - INFO - Extracting LSB with seed: 4242447357
+2025-10-04 16:51:14,822 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-04 16:51:14,829 - core.watermark_processor - INFO - Using strength factor: 1.0
+2025-10-04 16:51:14,861 - core.watermark_processor - INFO - Selected 120000 pixels for extraction
+2025-10-04 16:51:14,861 - core.watermark_processor - INFO - Parsed message length: 0
+2025-10-04 16:51:14,861 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:51:14] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:56:01,084 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:56:01] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:56:01,088 - api.routes - INFO - Generated new user key with ID: PD9lyO6_NDurtsYfCQ_--A
+2025-10-04 16:56:01,088 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:56:01] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:56:03,556 - core.watermark_methods - INFO - Applied frequency domain watermark with seed 1375144554
+2025-10-04 16:56:03,559 - api.routes - INFO - Applied frequency watermark with user key (hint: 51ebcfc7)
+2025-10-04 16:56:03,559 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:56:03] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:56:41,435 - api.routes - INFO - Successfully verified watermark with user key
+2025-10-04 16:56:41,435 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:56:41] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-04 16:57:07,147 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:07] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:57:07,147 - api.routes - INFO - Generated new user key with ID: ZKau00E5oi3tSwdqmivVXA
+2025-10-04 16:57:07,147 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:07] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-04 16:57:11,579 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:11,579 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:11] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:12,396 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:12,396 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:12] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:12,736 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:12,736 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:12] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:12,954 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:12,954 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:12] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:13,155 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:13,155 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:13,343 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:13,343 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:13,540 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:13,540 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:13,723 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:13,728 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:13,928 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:13,928 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:13] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:14,160 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:14,160 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:14] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:14,375 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:14,375 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:14] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:14,589 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:14,589 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:14] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:14,790 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:14,790 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:14] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:15,006 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:15,006 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:15] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:15,239 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:15,239 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:15] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:15,449 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:15,465 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:15] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:15,653 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:15,653 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:15] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:15,855 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:15,870 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:15] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-04 16:57:16,053 - api.routes - INFO - Applied metadata watermark with user key (hint: 822b845d)
+2025-10-04 16:57:16,053 - werkzeug - INFO - 127.0.0.1 - - [04/Oct/2025 16:57:16] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-05 13:02:56,744 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:02:56] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-05 13:02:56,744 - api.routes - INFO - Generated new user key with ID: xBRTmHBf3vs242Pm4JtAMg
+2025-10-05 13:02:56,748 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:02:56] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-05 13:03:03,194 - core.watermark_methods - INFO - Embedded 4736 bits with redundancy 2 using seed 741367071
+2025-10-05 13:03:03,816 - api.routes - INFO - Applied steganography watermark with user key (hint: 2c305d1f)
+2025-10-05 13:03:03,835 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:03:03] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-05 13:03:42,115 - core.watermark_processor - INFO - Extracting steganography with seed: 741367071, redundancy: 2
+2025-10-05 13:03:42,119 - core.watermark_processor - INFO - Parsed message length: 2336 (with redundancy 2)
+2025-10-05 13:03:42,128 - core.watermark_processor - INFO - Successfully extracted steganography watermark
+2025-10-05 13:03:42,129 - api.routes - INFO - Successfully verified watermark with user key
+2025-10-05 13:03:42,131 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:03:42] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:04:37,105 - core.watermark_processor - INFO - Extracting steganography with seed: 741367071, redundancy: 2
+2025-10-05 13:04:37,105 - core.watermark_processor - INFO - Parsed message length: 2336 (with redundancy 2)
+2025-10-05 13:04:37,114 - core.watermark_processor - INFO - Successfully extracted steganography watermark
+2025-10-05 13:04:37,114 - api.routes - INFO - Successfully verified watermark with user key
+2025-10-05 13:04:37,121 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:04:37] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:04:58,502 - core.watermark_processor - INFO - Extracting steganography with seed: 2183890013, redundancy: 2
+2025-10-05 13:04:58,503 - core.watermark_processor - INFO - Parsed message length: 1048832 (with redundancy 2)
+2025-10-05 13:04:58,503 - core.watermark_processor - INFO - Extracting LSB with seed: 2183890013
+2025-10-05 13:04:58,503 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 13:04:58,504 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-05 13:04:58,533 - core.watermark_processor - INFO - Selected 84083 pixels for extraction
+2025-10-05 13:04:58,533 - core.watermark_processor - INFO - Parsed message length: 2299221008
+2025-10-05 13:04:58,541 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:04:58] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:05:03,115 - core.watermark_processor - INFO - Extracting steganography with seed: 1374408647, redundancy: 2
+2025-10-05 13:05:03,115 - core.watermark_processor - INFO - Parsed message length: 1048832 (with redundancy 2)
+2025-10-05 13:05:03,115 - core.watermark_processor - INFO - Extracting LSB with seed: 1374408647
+2025-10-05 13:05:03,115 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 13:05:03,115 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-05 13:05:03,155 - core.watermark_processor - INFO - Selected 83891 pixels for extraction
+2025-10-05 13:05:03,155 - core.watermark_processor - INFO - Parsed message length: 1213230212
+2025-10-05 13:05:03,160 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:05:03] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:05:07,154 - core.watermark_processor - INFO - Extracting steganography with seed: 4194261596, redundancy: 2
+2025-10-05 13:05:07,154 - core.watermark_processor - INFO - Parsed message length: 1048832 (with redundancy 2)
+2025-10-05 13:05:07,154 - core.watermark_processor - INFO - Extracting LSB with seed: 4194261596
+2025-10-05 13:05:07,154 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 13:05:07,154 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-05 13:05:07,194 - core.watermark_processor - INFO - Selected 84210 pixels for extraction
+2025-10-05 13:05:07,195 - core.watermark_processor - INFO - Parsed message length: 2454528001
+2025-10-05 13:05:07,197 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:05:07] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:05:11,415 - core.watermark_processor - INFO - Extracting steganography with seed: 746254388, redundancy: 2
+2025-10-05 13:05:11,417 - core.watermark_processor - INFO - Parsed message length: 1048832 (with redundancy 2)
+2025-10-05 13:05:11,417 - core.watermark_processor - INFO - Extracting LSB with seed: 746254388
+2025-10-05 13:05:11,417 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 13:05:11,417 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-05 13:05:11,451 - core.watermark_processor - INFO - Selected 84107 pixels for extraction
+2025-10-05 13:05:11,451 - core.watermark_processor - INFO - Parsed message length: 607167492
+2025-10-05 13:05:11,453 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:05:11] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:05:15,829 - core.watermark_processor - INFO - Extracting steganography with seed: 64897719, redundancy: 2
+2025-10-05 13:05:15,829 - core.watermark_processor - INFO - Parsed message length: 1048832 (with redundancy 2)
+2025-10-05 13:05:15,829 - core.watermark_processor - INFO - Extracting LSB with seed: 64897719
+2025-10-05 13:05:15,829 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 13:05:15,829 - core.watermark_processor - INFO - Using strength factor: 0.7
+2025-10-05 13:05:15,863 - core.watermark_processor - INFO - Selected 84270 pixels for extraction
+2025-10-05 13:05:15,864 - core.watermark_processor - INFO - Parsed message length: 8479872
+2025-10-05 13:05:15,864 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 13:05:15] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 13:34:58,038 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-10-05 13:34:58,108 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 13:58:40,670 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.201:5000
+2025-10-05 13:58:40,670 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-05 13:58:40,672 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 13:58:41,693 - werkzeug - WARNING -  * Debugger is active!
+2025-10-05 13:58:41,695 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-05 14:15:06,118 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:15:06] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:15:06,126 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:15:06] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:15:21,410 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:15:21] "OPTIONS /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:15:30,307 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:15:30] "POST /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:15:48,129 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.201:5000
+2025-10-05 14:15:48,129 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-05 14:15:48,130 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 14:15:49,095 - werkzeug - WARNING -  * Debugger is active!
+2025-10-05 14:15:49,098 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-05 14:19:30,778 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:19:30] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:19:30,785 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:19:30] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:21:52,205 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.201:5000
+2025-10-05 14:21:52,205 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-05 14:21:52,205 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 14:21:53,135 - werkzeug - WARNING -  * Debugger is active!
+2025-10-05 14:21:53,140 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-05 14:22:04,345 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:22:04] "OPTIONS /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:22:13,837 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:22:13] "POST /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:26:00,749 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:26:00] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:26:00,749 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:26:00] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:27:23,739 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:27:23] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:27:23,739 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:27:23] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:28:00,531 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:28:00] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:28:00,537 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:28:00] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 14:28:59,647 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-10-05 14:29:01,812 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 14:29:02,814 - werkzeug - WARNING -  * Debugger is active!
+2025-10-05 14:29:02,816 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-05 14:31:32,186 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:31:32] "OPTIONS /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:31:38,848 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 14:31:38] "POST /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 14:41:34,576 - werkzeug - INFO -  * Detected change in 'C:\\Users\\amine\\Projects\\CryptoMark\\Back\\api\\routes.py', reloading
+2025-10-05 14:41:36,710 - werkzeug - INFO -  * Restarting with stat
+2025-10-05 14:41:37,721 - werkzeug - WARNING -  * Debugger is active!
+2025-10-05 14:41:37,723 - werkzeug - INFO -  * Debugger PIN: 187-473-094
+2025-10-05 17:50:24,625 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 17:50:24] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 17:50:24,657 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 17:50:24] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 18:23:27,655 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:23:27] "OPTIONS /api/keys/generate HTTP/1.1" 200 -
+2025-10-05 18:23:27,655 - api.routes - INFO - Generated new user key with ID: Rx-vbrLvhS-nHgfJi6Va6w
+2025-10-05 18:23:27,655 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:23:27] "POST /api/keys/generate HTTP/1.1" 200 -
+2025-10-05 18:23:30,204 - core.watermark_methods - INFO - Embedded 2368 bits with redundancy 1 using seed 2834257511
+2025-10-05 18:23:30,204 - api.routes - INFO - Applied steganography watermark with user key (hint: a8ef5667)
+2025-10-05 18:23:30,214 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:23:30] "POST /api/images/watermark HTTP/1.1" 200 -
+2025-10-05 18:24:11,919 - core.watermark_processor - INFO - Extracting steganography with seed: 2183890013, redundancy: 1
+2025-10-05 18:24:11,919 - core.watermark_processor - INFO - Parsed message length: 288 (with redundancy 1)
+2025-10-05 18:24:11,919 - services.encryption_service - ERROR - Decryption failed: 
+2025-10-05 18:24:11,919 - core.watermark_processor - INFO - Extracting LSB with seed: 2183890013
+2025-10-05 18:24:11,919 - core.watermark_processor - INFO - Image dimensions: 300x400
+2025-10-05 18:24:11,919 - core.watermark_processor - INFO - Using strength factor: 0.2
+2025-10-05 18:24:11,996 - core.watermark_processor - INFO - Selected 24222 pixels for extraction
+2025-10-05 18:24:11,996 - core.watermark_processor - INFO - Parsed message length: 1057
+2025-10-05 18:24:11,996 - core.watermark_processor - INFO - Extracted 1089 bits total
+2025-10-05 18:24:11,996 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:24:11] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 18:24:24,304 - core.watermark_processor - INFO - Extracting steganography with seed: 2834257511, redundancy: 1
+2025-10-05 18:24:24,304 - core.watermark_processor - INFO - Parsed message length: 2336 (with redundancy 1)
+2025-10-05 18:24:24,323 - core.watermark_processor - INFO - Successfully extracted steganography watermark
+2025-10-05 18:24:24,324 - api.routes - INFO - Successfully verified watermark with user key
+2025-10-05 18:24:24,324 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:24:24] "POST /api/images/verify HTTP/1.1" 200 -
+2025-10-05 18:24:38,056 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:24:38] "OPTIONS /api/agent/session HTTP/1.1" 200 -
+2025-10-05 18:24:38,058 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:24:38] "POST /api/agent/session HTTP/1.1" 200 -
+2025-10-05 18:25:36,418 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:25:36] "OPTIONS /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 18:25:40,283 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:25:40] "POST /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 18:26:38,066 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:26:38] "OPTIONS /api/agent/chat HTTP/1.1" 200 -
+2025-10-05 18:26:43,220 - werkzeug - INFO - 127.0.0.1 - - [05/Oct/2025 18:26:43] "POST /api/agent/chat HTTP/1.1" 200 -
